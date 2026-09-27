@@ -1,0 +1,379 @@
+:root {
+  --ink: #14212b;
+  --muted: #5b6b76;
+  --line: #d5dee5;
+  --paper: #f3f6f8;
+  --panel: #ffffff;
+  --accent: #0f6e56;
+  --accent-soft: #d8f3e7;
+  --warn: #9a3412;
+  --danger: #9f1239;
+  --ok: #047857;
+  --display: "Source Serif 4", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(1000px 420px at 0% -10%, #d8f3e7 0%, transparent 55%),
+    radial-gradient(800px 360px at 100% 0%, #e7eef5 0%, transparent 50%),
+    var(--paper);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+textarea,
+input,
+select {
+  font: inherit;
+}
+
+.shell {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  z-index: 10;
+}
+
+.brand {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+.hero {
+  padding: 4.5rem 0 3rem;
+  animation: rise 0.7s ease both;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0.35rem 0 0.8rem;
+  max-width: 12ch;
+}
+
+.hero p {
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  border: 1px solid transparent;
+  border-radius: 0.45rem;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+  font-weight: 500;
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+.btn.secondary {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.section {
+  padding: 1.5rem 0 3rem;
+}
+
+.section h2 {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  margin: 0 0 0.35rem;
+}
+
+.section .lede {
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+}
+
+.batch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.batch-card,
+.tool-card,
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  box-shadow: 0 1px 0 rgba(20, 33, 43, 0.03);
+}
+
+.batch-card,
+.tool-card {
+  padding: 1rem 1.05rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.batch-card:hover,
+.tool-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.batch-card strong,
+.tool-card strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.tool-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 900px) {
+  .tool-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.panel {
+  padding: 1rem;
+}
+
+.panel h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0.75rem 0 0.35rem;
+}
+
+textarea {
+  width: 100%;
+  min-height: 160px;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  padding: 0.7rem 0.8rem;
+  background: #fbfcfd;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  padding: 0.55rem 0.65rem;
+  background: #f8fafb;
+}
+
+.metric span {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.metric strong {
+  font-family: var(--display);
+  font-size: 1.25rem;
+}
+
+.summary {
+  border-left: 3px solid var(--accent);
+  padding: 0.55rem 0.8rem;
+  background: var(--accent-soft);
+  border-radius: 0 0.4rem 0.4rem 0;
+  margin-bottom: 0.85rem;
+}
+
+.summary.fail {
+  border-left-color: var(--danger);
+  background: #ffe4e6;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+th {
+  background: #eef3f6;
+  font-weight: 600;
+}
+
+pre {
+  margin: 0;
+  padding: 0.75rem;
+  background: #0f1720;
+  color: #e7eef5;
+  border-radius: 0.45rem;
+  overflow: auto;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+}
+
+.block + .block {
+  margin-top: 0.85rem;
+}
+
+.block h4 {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+}
+
+.docs {
+  grid-column: 1 / -1;
+}
+
+.docs ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0 2.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise 0.55s ease both;
+}
