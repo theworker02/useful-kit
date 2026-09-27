@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import catalog from "../data/catalog.json";
+import type { Catalog } from "../lib/catalog";
 
-export function HomePage() {
+export function HomePage({ catalog }: { catalog: Catalog }) {
   const firstBatch = catalog.tools.filter((t) => t.batch === 1);
 
   return (
     <>
       <section className="hero">
-        <p className="eyebrow">GitHub Pages product</p>
+        <p className="eyebrow">300 tools · batches of five</p>
         <h1>{catalog.product.name}</h1>
         <p>{catalog.product.tagline}</p>
         <p style={{ marginTop: "0.85rem" }}>{catalog.product.description}</p>

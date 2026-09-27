@@ -4,8 +4,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const outDir = join(__dirname, "../src/data");
+const outDir = join(__dirname, "../public");
 mkdirSync(outDir, { recursive: true });
+mkdirSync(join(__dirname, "../src/data"), { recursive: true });
 
 const PREFIX = [
   "Clear","Swift","Solid","Bright","Steady","Sharp","Quiet","Open","True","Prime",
@@ -330,24 +331,31 @@ for (let i = 0; i < 300; i++) {
   });
 }
 
-writeFileSync(
-  join(outDir, "catalog.json"),
-  JSON.stringify(
-    {
-      product: {
-        name: "Useful Kit",
-        tagline: "300 practical browser tools, in batches of five.",
-        description:
-          "A GitHub Pages product: focused utilities for everyday engineering and ops work. Every tool runs locally, ships with sample input, and can export results.",
-      },
-      count: tools.length,
-      batchSize: 5,
-      batchCount: 60,
-      tools,
-    },
-    null,
-    2,
-  ),
-);
+const payload = {
+  product: {
+    name: "Useful Kit",
+    tagline: "300 practical browser tools, in batches of five.",
+    description:
+      "Focused utilities for everyday engineering and ops work. Every tool runs locally, ships with sample input, and can export results.",
+  },
+  count: tools.length,
+  batchSize: 5,
+  batchCount: 60,
+  tools,
+};
 
-console.log(`Wrote ${tools.length} tools → ${outDir}/catalog.json`);
+// Keep samples short so the static site stays easy to deploy.
+for (const t of tools) {
+  for (const input of t.inputs) {
+    if (input.sample && input.sample.length > 320) {
+      input.sample = `${input.sample.slice(0, 320)}\n…`;
+    }
+  }
+}
+
+const pretty = JSON.stringify(payload, null, 2);
+const compact = JSON.stringify(payload);
+writeFileSync(join(outDir, "catalog.json"), compact);
+writeFileSync(join(__dirname, "../src/data/catalog.json"), pretty);
+
+console.log(`Wrote ${tools.length} tools → ${outDir}/catalog.json (${compact.length} bytes)`);

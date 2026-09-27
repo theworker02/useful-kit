@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
-import catalog from "../data/catalog.json";
+import type { Catalog } from "../lib/catalog";
 
-export function BatchPage() {
+export function BatchPage({ catalog }: { catalog: Catalog }) {
   const { n } = useParams();
   const batchNum = n ? Number(n) : null;
   const valid = batchNum && batchNum >= 1 && batchNum <= catalog.batchCount;
@@ -38,7 +38,9 @@ export function BatchPage() {
     <section className="section rise">
       <div className="pager">
         <div>
-          <p className="eyebrow">Batch {batchNum} of {catalog.batchCount}</p>
+          <p className="eyebrow">
+            Batch {batchNum} of {catalog.batchCount}
+          </p>
           <h2 style={{ margin: 0 }}>Five useful tools</h2>
         </div>
         <div className="cta-row">

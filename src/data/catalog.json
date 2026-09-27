@@ -2,7 +2,7 @@
   "product": {
     "name": "Useful Kit",
     "tagline": "300 practical browser tools, in batches of five.",
-    "description": "A GitHub Pages product: focused utilities for everyday engineering and ops work. Every tool runs locally, ships with sample input, and can export results."
+    "description": "Focused utilities for everyday engineering and ops work. Every tool runs locally, ships with sample input, and can export results."
   },
   "count": 300,
   "batchSize": 5,
